@@ -301,6 +301,12 @@ if [[ "$APPLY_BBR" == "y" || "$APPLY_BBR" == "Y" || "$APPLY_BBR" == "d" || "$APP
   fi
 fi
 
+# ===== 启用 USB 转串口支持 (CH340 / ESP32) =====
+echo ">>> 启用 USB 转串口支持 (CH340/ESP32)..."
+echo "CONFIG_USB_SERIAL=y" >> "$DEFCONFIG_FILE"
+echo "CONFIG_USB_SERIAL_CH341=y" >> "$DEFCONFIG_FILE"
+echo "CONFIG_USB_ACM=y" >> "$DEFCONFIG_FILE"
+
 # ===== 启用 Droidspaces 容器支持 =====
 if [[ "$APPLY_DROIDSPACES" == [sSeE] ]]; then
   echo ">>> 正在添加 Droidspaces 容器支持..."
