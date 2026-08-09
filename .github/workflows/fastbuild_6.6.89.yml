@@ -387,6 +387,16 @@ jobs:
           cd common
           wget https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$GITHUB_REF_NAME/other_patch/cve-2026-43499-rtmutex-6.6.patch
           patch -p1 -F 3 < cve-2026-43499-rtmutex-6.6.patch
+           # ===== 启用 USB 转串口支持 (CH340 / ESP32 / CP210x) =====
+          echo ">>> 启用 USB 转串口支持 (CH340/ESP32)..."
+          cd ../  # 回到 kernel_workspace 目录
+          echo "CONFIG_USB_SERIAL=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USB_SERIAL_CH341=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USB_SERIAL_CP210X=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USB_SERIAL_FTDI_SIO=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USB_SERIAL_GENERIC=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USB_ACM=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo ">>> USB 转串口支持已启用"
           
       - name: 启用网络功能增强优化配置
         if: inputs.better_net
