@@ -398,12 +398,12 @@ jobs:
           echo "CONFIG_USB_ACM=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo ">>> USB 转串口支持已启用"
           
-          # ===== 启用 USB/IP 客户端 =====
-          echo ">>> 启用 USB/IP 客户端..."         
-          echo "CONFIG_USBIP_CORE=m" >> ./common/arch/arm64/configs/gki_defconfig
-          echo "CONFIG_USBIP_VHCI_HCD=m" >> ./common/arch/arm64/configs/gki_defconfig
-          echo "CONFIG_USBIP_HOST=m" >> ./common/arch/arm64/configs/gki_defconfig          
-          echo ">>> USB/IP 客户端已启用"
+          # ===== 启用 USB/IP 支持 =====
+          echo ">>> 启用 USB/IP..."          
+          echo "CONFIG_USBIP_CORE=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USBIP_VHCI_HCD=y" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "CONFIG_USBIP_HOST=y" >> ./common/arch/arm64/configs/gki_defconfig          
+          echo ">>> USB/IP 已启用"
           
       - name: 启用网络功能增强优化配置
         if: inputs.better_net
